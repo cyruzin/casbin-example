@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres:13.2-alpine
+    container_name: auth-postgres
+    hostname: auth-postgres
+    volumes:
+      - .data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_DB=auth
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
